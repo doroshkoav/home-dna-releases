@@ -23,4 +23,10 @@
 - Backend не подключён — все действия (загрузка документов, гарантий и т.д.) работают на локальном моке, без сохранения на сервере.
 - iOS-сборки нет.
 
+### Исправлено
+- Размер APK уменьшен со 132 МБ до ~44 МБ: `-PreactNativeArchitectures` ограничивал только компиляцию
+  собственного нативного кода, но не упаковку прекомпилированных `.so` из React Native/Hermes — добавлен
+  `android.defaultConfig.ndk.abiFilters "arm64-v8a"` в `apps/mobile/android/app/build.gradle`, чтобы
+  реально исключить лишние архитектуры из финального APK.
+
 [0.1.0]: https://github.com/doroshkoav/home-dna-releases/releases/tag/v0.1.0
